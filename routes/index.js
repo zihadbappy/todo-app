@@ -7,11 +7,11 @@ var todo= require('../models/todoSchema');
 router.get('/', function(req, response, next) {
   todo.find({},(err,res)=>{
   if(err) console.log(err);
-  response.render('index', { title: '2DO', res  });
+  response.render('main', { res, title:'2Do'  });
   });
 });
 
-router.get('/newtodo', function(req, res){
+router.post('/newtodo', function(req, res){
   const{task}=req.body;
   if(task!=''){
     console.log(task);
@@ -19,6 +19,17 @@ router.get('/newtodo', function(req, res){
       res.redirect('/');
     }).catch(err=>console.log(err));
   }
+});
+
+router.post('delete', function(req, res){
+  const{task_id}=req.body;
+  console.log(task_id);
+
+  todo.findByIdAndDelete(task_id, (err)=> {
+    if(err) console.log(err);
+    console.log(`Deletion completed`);
+  });
+  res.redirect('/');
 });
 
 

@@ -1,0 +1,25 @@
+
+<p>
+  <% var t= res %>
+  <%- t[0].task %>
+  <br>
+  <%- t[1].task %>
+  
+</p>
+
+
+<p>klsadfjk</p>
+<div>
+  <form action="/newtodo" method="POST" >
+    <input type="text"
+    id="task"
+    name="task"
+    value="<%- typeof name != 'undefined' ? task : '' %>"
+    >
+    <button type="submit"> Add 2Do </button>
+  </form>
+</div>
+
+<% res.forEach(function(x){  %>
+  <p><%- x.task %> </p>
+<% }) %>
