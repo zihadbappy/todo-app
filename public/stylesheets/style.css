@@ -1,8 +1,14 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px 'Amaranth';
 }
 
-a {
-  color: #00B7FF;
+p{
+  font-weight: 400;
+  font-size: 1.2rem;
+  font-family: 'Amaranth';
+}
+
+.row{
+  padding: 0.7rem;
+  margin-left: 0.3rem;
 }

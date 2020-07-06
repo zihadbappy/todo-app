@@ -1,25 +1,52 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand mx-auto" href="#">To Do</a>
+</nav>
+<br>
+<br>
 
-<p>
-  <% var t= res %>
-  <%- t[0].task %>
-  <br>
-  <%- t[1].task %>
+<div class="container">
+  <div class="row justify-content-end">
+    <div class="card text-black bg-secondary mb-3 col-12
+    col mx-3 mx-md-3 mx-lg-5"  style="max-width: 65rem;">
+    <div class="card-body">
+       <form action="/newtodo" method="POST" >
+        <div class="form-group">
+          <input type="text"
+          id="task"
+          class="form-control"
+          placeholder="What would you like to get done?"
+          name="task"
+          value="<%- typeof name != 'undefined' ? task : '' %>"
+          >
+        </div>
+        <button type="submit" class="btn btn-primary mb-3"
+        style="width:8rem"> Add task </button>
+      </div>
+      </form>
+    </div>
+  </div>
+
   
-</p>
-
-
-<p>klsadfjk</p>
-<div>
-  <form action="/newtodo" method="POST" >
-    <input type="text"
-    id="task"
-    name="task"
-    value="<%- typeof name != 'undefined' ? task : '' %>"
-    >
-    <button type="submit"> Add 2Do </button>
-  </form>
+  <% if(typeof res != 'undefined'){ %>
+   <% res.forEach(function(x){  %>
+    
+     <div class="row row-content justify-content-end align-items-center ">
+      <div class="col col-8 col-md-8">
+        <div class="card">
+          <div class="card-body task"> <p><%- x.task %></p></div>
+        </div>
+      </div>
+      <div class="col-4 col-sm-3">
+          <form  action='/delete' method='POST'>
+             <div >
+                <button id="taskid" name="taskid"
+                class="btn btn-primary"
+                value="<%-x._id%>" type="submit" %>
+                >Delete</button>
+             </div>
+          </form>
+        </div>
+      </div>
+   <% }); %>
+  <% } %>
 </div>
-
-<% res.forEach(function(x){  %>
-  <p><%- x.task %> </p>
-<% }) %>

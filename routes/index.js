@@ -19,13 +19,14 @@ router.post('/newtodo', function(req, res){
       res.redirect('/');
     }).catch(err=>console.log(err));
   }
+  else res.redirect('/');
 });
 
-router.post('delete', function(req, res){
-  const{task_id}=req.body;
-  console.log(task_id);
+router.post('/delete', function(req, res){
+  const{taskid}=req.body;
+  console.log(taskid);
 
-  todo.findByIdAndDelete(task_id, (err)=> {
+  todo.findByIdAndDelete(taskid, (err)=> {
     if(err) console.log(err);
     console.log(`Deletion completed`);
   });
