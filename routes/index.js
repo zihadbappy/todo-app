@@ -4,10 +4,10 @@ var todo= require('../models/todoSchema');
 
 
 /* GET home page. */
-router.get('/', function(req, response, next) {
-  todo.find({},(err,res)=>{
+router.get('/', async(req, response, next)=> {
+await todo.find({},(err,res)=>{
   if(err) console.log(err);
-  response.render('main', { res, title:'2Do'  });
+  response.render('main', { res, title:'To Do'  });
   });
 });
 
@@ -22,11 +22,11 @@ router.post('/newtodo', function(req, res){
   else res.redirect('/');
 });
 
-router.post('/delete', function(req, res){
+router.post('/delete', async(req, res)=>{
   const{taskid}=req.body;
   console.log(taskid);
 
-  todo.findByIdAndDelete(taskid, (err)=> {
+ await todo.findByIdAndDelete(taskid, (err)=> {
     if(err) console.log(err);
     console.log(`Deletion completed`);
   });
